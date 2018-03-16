@@ -47,7 +47,7 @@ public class MQTTSession implements Handler<Message<Buffer>> {
     private String protoName;
     private boolean cleanSession;
     private String tenant;
-    private boolean securityEnabled;
+    private boolean securityEnabled = false;
     private String authenticatorAddress;
     private String authorizationToken = null;
     private boolean retainSupport;
@@ -445,6 +445,7 @@ public class MQTTSession implements Handler<Message<Buffer>> {
          * the Server MUST deliver the message to the Client respecting the maximum QoS of all the matching subscriptions
          */
         String topic = publishMessage.getTopicName();
+        logger.info("topic = {}",topic);
         List<Subscription> subs = getAllMatchingSubscriptions(topic);
         if(subs!=null && subs.size()>0) {
             publishMessageToThisClient = true;

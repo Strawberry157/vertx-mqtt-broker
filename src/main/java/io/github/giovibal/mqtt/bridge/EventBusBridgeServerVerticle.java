@@ -59,7 +59,6 @@ public class EventBusBridgeServerVerticle extends AbstractVerticle {
                 )
             ;
         }
-
         netServer = vertx.createNetServer(opt);
         netServer.connectHandler(sock -> {
             final EventBusNetBridge ebnb = new EventBusNetBridge(sock, vertx.eventBus(), address);
